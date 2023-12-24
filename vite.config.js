@@ -5,7 +5,6 @@ import { resolve } from "path";
 
 export default defineConfig(mode => {
 	const env = loadEnv(mode, process.cwd(), "");
-	// const title = env.VITE_APP_TITLE || "v2case";
 	const hasProd = env.VITE_APP_ENV === "production";
 
 	return {

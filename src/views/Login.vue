@@ -1,5 +1,9 @@
 <template>
-	<div>LOGIN</div>
+	<div>
+		<center>
+			<h1>LOGIN V2Case</h1>
+		</center>
+	</div>
 </template>
 
 <script>

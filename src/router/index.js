@@ -6,26 +6,11 @@ NProgress.configure({ showSpinner: false });
 
 Vue.use(VueRouter);
 
-const routes = [
-	{
-		path: "/login",
-		name: "Login",
-		component: () => import("@/views/Login.vue")
-	},
-	{
-		path: "/error",
-		name: "Error",
-		component: () => import("@/views/Error.vue")
-	},
-	{
-		path: "/*",
-		redirect: "/error"
-	}
-];
+const hasProd = import.meta.env.VITE_APP_ENV === "production";
 
 const router = new VueRouter({
 	mode: "history",
-	base: "./",
+	base: hasProd ? "/v2case/" : "./",
 	routes: [...routesBase, ...routesCommon]
 });
 

@@ -1,14 +1,14 @@
 <template>
 	<div>
 		<center>
-			<h1>Page Not Found</h1>
+			<h1>HOME V2Case</h1>
 		</center>
 	</div>
 </template>
 
 <script>
 export default {
-	name: "Error"
+	name: "Home"
 };
 </script>
 
