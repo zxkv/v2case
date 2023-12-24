@@ -9,7 +9,7 @@ Vue.use(VueRouter);
 
 const router = new VueRouter({
 	mode: "history",
-	base: "./",
+	base: "/v2case/",
 	routes: [...routesBase, ...routesCommon]
 });
 
