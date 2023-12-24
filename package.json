@@ -1,0 +1,43 @@
+{
+	"name": "vite-v2case",
+	"private": true,
+	"version": "0.0.1",
+	"type": "module",
+	"author": "zxkvv@qq.com",
+	"scripts": {
+		"dev": "vite",
+		"build": "vite build",
+		"preview": "vite preview",
+		"lint": "eslint 'src/**/*.{js,jsx,vue}' --fix",
+		"prepare": "husky install"
+	},
+	"husky": {
+		"hooks": {
+			"pre-commit": "lint-staged"
+		}
+	},
+	"lint-staged": {
+		"*.{js,jsx,tsx,vue}": [
+			"prettier --write",
+			"eslint --fix"
+		],
+		"*.{html,css,less,scss,md}": [
+			"prettier --write"
+		]
+	},
+	"dependencies": {
+		"vue": "^2.7.15"
+	},
+	"devDependencies": {
+		"@vitejs/plugin-vue2": "^2.3.1",
+		"eslint": "^8.56.0",
+		"eslint-config-prettier": "^9.1.0",
+		"eslint-plugin-prettier": "^5.1.2",
+		"eslint-plugin-vue": "^9.19.2",
+		"husky": "^8.0.3",
+		"lint-staged": "^15.2.0",
+		"prettier": "^3.1.1",
+		"sass": "^1.69.5",
+		"vite": "^5.0.8"
+	}
+}
