@@ -5,6 +5,7 @@ import { resolve } from "path";
 
 export default defineConfig({
 	plugins: [vue()],
+	base: "/v2case/",
 	server: {
 		open: true,
 		host: true,
