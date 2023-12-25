@@ -5,11 +5,10 @@ import { resolve } from "path";
 
 export default defineConfig(mode => {
 	const env = loadEnv(mode, process.cwd(), "");
-	const hasProd = env.VITE_APP_ENV === "production";
 
 	return {
 		plugins: [vue(), envHtml(env)],
-		base: hasProd ? "/v2case/" : "/",
+		base: "/v2case/",
 		server: {
 			open: true,
 			cors: true,
