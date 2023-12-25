@@ -29,6 +29,7 @@
 		"axios": "^1.6.2",
 		"better-mock": "^0.3.7",
 		"dayjs": "^1.11.10",
+		"element-ui": "^2.15.14",
 		"nanoid": "^5.0.4",
 		"nprogress": "^0.2.0",
 		"pinia": "^2.1.7",
