@@ -15,7 +15,8 @@ const router = new VueRouter({
 
 router.beforeEach((to, from, next) => {
 	NProgress.start();
-	next();
+	if (to.path !== "/login") next("/login");
+	else next();
 });
 
 router.afterEach(() => {

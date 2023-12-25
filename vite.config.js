@@ -8,7 +8,7 @@ export default defineConfig(mode => {
 
 	return {
 		plugins: [vue(), envHtml(env)],
-		base: "/v2case/",
+		base: "./",
 		server: {
 			open: true,
 			cors: true,
