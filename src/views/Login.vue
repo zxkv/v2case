@@ -31,6 +31,9 @@
 </template>
 
 <script>
+import { mapActions } from "pinia";
+import { useUserStore } from "@/store/user";
+
 export default {
 	name: "Login",
 	data() {
@@ -46,10 +49,18 @@ export default {
 		};
 	},
 	methods: {
+		...mapActions(useUserStore, ["setName"]),
 		handleLogin() {
 			this.$refs["loginForm"].validate(valid => {
 				if (!valid) return false;
-				this.$message.success("登录成功");
+				let { username, password } = this.loginForm;
+				if (["admin", "user"].includes(username) && password === "123456") {
+					this.setName({ username, password });
+					this.$router.replace("/");
+					this.$message.success("登录成功");
+				} else {
+					this.$message.error("账号或密码错误");
+				}
 			});
 		}
 	}
