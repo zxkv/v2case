@@ -1,8 +1,11 @@
 <template>
 	<div class="app-login">
 		<el-card shadow="hover" class="al-card">
-			<div slot="header">系统登录</div>
-			<el-form ref="loginForm" :model="loginForm" :rules="rules">
+			<div slot="header">
+				<span>系统登录</span>
+				<span class="al-back" @click="handleBack">返回</span>
+			</div>
+			<el-form ref="loginForm" :model="loginForm" :rules="rules" @submit.native.prevent="handleLogin">
 				<el-form-item prop="username">
 					<el-input
 						v-model.trim="loginForm.username"
@@ -23,7 +26,7 @@
 					></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button class="al-btn" type="primary" plain :loading="loading" @click="handleLogin">登 录</el-button>
+					<el-button class="al-btn" type="primary" :loading="loading" native-type="submit">登 录</el-button>
 				</el-form-item>
 			</el-form>
 		</el-card>
@@ -58,13 +61,20 @@ export default {
 				let { username, password } = this.loginForm;
 				if (["admin", "user"].includes(username) && password === "123456") {
 					this.setName({ username, password });
-					this.$router.replace("/");
 					this.$message.success("登录成功");
+
+					setTimeout(() => {
+						this.loading = false;
+						this.$router.replace("/");
+					}, 500);
 				} else {
+					this.loading = false;
 					this.$message.error("账号或密码错误");
 				}
-				this.loading = false;
 			});
+		},
+		handleBack() {
+			location.replace("./");
 		}
 	}
 };
@@ -84,6 +94,12 @@ export default {
 	.al-card {
 		width: 360px;
 
+		.al-back {
+			float: right;
+			font-size: 14px;
+			color: #409eff;
+			cursor: pointer;
+		}
 		.al-btn {
 			width: 100%;
 		}

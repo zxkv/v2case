@@ -1,4 +1,4 @@
-export const routesBase = [
+export const baseRouters = [
 	{
 		path: "/login",
 		name: "Login",
@@ -6,7 +6,7 @@ export const routesBase = [
 	}
 ];
 
-export const routesCommon = [
+export const asyncRouters = [
 	{
 		path: "",
 		name: "Home",
@@ -18,7 +18,7 @@ export const routesCommon = [
 		component: () => import("@/views/Error.vue")
 	},
 	{
-		path: "/*",
+		path: "*",
 		redirect: "/error"
 	}
 ];

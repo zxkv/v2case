@@ -1,28 +1,34 @@
-import Vue from "vue";
 import VueRouter from "vue-router";
-import pinia from "@/store";
-import { useUserStore } from "@/store/user";
-import { routesBase, routesCommon } from "./router";
+// import pinia from "@/store";
+import { baseRouters, asyncRouters } from "./router";
 
-Vue.use(VueRouter);
+const originPush = VueRouter.prototype.push;
+VueRouter.prototype.push = function push(location) {
+	return originPush.call(this, location).catch(err => err);
+};
 
-const store = useUserStore(pinia);
+const originReplace = VueRouter.prototype.replace;
+VueRouter.prototype.replace = function replace(location) {
+	return originReplace.call(this, location).catch(err => err);
+};
 
-const router = new VueRouter({
-	mode: "history",
-	base: "/v2case/",
-	routes: [...routesBase, ...routesCommon]
-});
+const env = import.meta.env.MODE;
 
-let isLogin = false;
-router.beforeEach((to, from, next) => {
-	isLogin = store.role !== null;
+// const store = useUserStore(pinia);
 
-	if (to.path === "/login") {
-		isLogin ? next({ name: "Home", path: "" }) : next();
-	} else {
-		isLogin ? next() : next({ name: "Login", path: "/login" });
-	}
-});
+const createRouter = () =>
+	new VueRouter({
+		mode: "history",
+		base: env === "development" ? null : "/v2case/",
+		routes: [...baseRouters, ...asyncRouters],
+		scrollBehavior: () => ({ x: 0, y: 0 })
+	});
+
+const router = createRouter();
+
+export const resetRouter = () => {
+	const newRouter = createRouter();
+	router.matcher = newRouter.matcher;
+};
 
 export default router;
