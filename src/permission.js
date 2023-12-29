@@ -5,13 +5,11 @@ const store = useUserStore();
 
 let isLogin = false;
 router.beforeEach((to, from, next) => {
-	console.log("store", store);
 	isLogin = store.role !== null;
-
 	if (to.path === "/login") {
 		isLogin ? next({ name: "Home", path: "" }) : next();
 	} else {
-		isLogin ? next() : next({ name: "Login", path: "/login" });
+		isLogin ? next() : next({ path: "/login" });
 	}
 });
 

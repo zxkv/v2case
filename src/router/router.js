@@ -1,3 +1,5 @@
+import Layout from "@/layout/index.vue";
+
 export const baseRouters = [
 	{
 		path: "/login",
@@ -10,7 +12,8 @@ export const asyncRouters = [
 	{
 		path: "",
 		name: "Home",
-		component: () => import("@/views/Home.vue")
+		// component: () => import("@/views/Home.vue")
+		component: Layout
 	},
 	{
 		path: "/error",

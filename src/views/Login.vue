@@ -62,11 +62,8 @@ export default {
 				if (["admin", "user"].includes(username) && password === "123456") {
 					this.setName({ username, password });
 					this.$message.success("登录成功");
-
-					setTimeout(() => {
-						this.loading = false;
-						this.$router.replace("/");
-					}, 500);
+					this.loading = false;
+					this.$router.replace("/");
 				} else {
 					this.loading = false;
 					this.$message.error("账号或密码错误");
