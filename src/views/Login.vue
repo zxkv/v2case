@@ -23,7 +23,7 @@
 					></el-input>
 				</el-form-item>
 				<el-form-item>
-					<el-button class="al-btn" type="primary" plain @click="handleLogin">登 录</el-button>
+					<el-button class="al-btn" type="primary" plain :loading="loading" @click="handleLogin">登 录</el-button>
 				</el-form-item>
 			</el-form>
 		</el-card>
@@ -38,9 +38,10 @@ export default {
 	name: "Login",
 	data() {
 		return {
+			loading: false,
 			loginForm: {
-				username: "",
-				password: ""
+				username: "admin",
+				password: "123456"
 			},
 			rules: {
 				username: [{ required: true, message: "请输入账号", trigger: "blur" }],
@@ -53,6 +54,7 @@ export default {
 		handleLogin() {
 			this.$refs["loginForm"].validate(valid => {
 				if (!valid) return false;
+				this.loading = true;
 				let { username, password } = this.loginForm;
 				if (["admin", "user"].includes(username) && password === "123456") {
 					this.setName({ username, password });
@@ -61,6 +63,7 @@ export default {
 				} else {
 					this.$message.error("账号或密码错误");
 				}
+				this.loading = false;
 			});
 		}
 	}
@@ -75,19 +78,11 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: #000 url("../assets/img/login.webp") top center no-repeat;
+	background: url("../assets/img/login.webp") top center no-repeat;
 	background-size: cover;
-	&::before {
-		content: "";
-		width: 100%;
-		height: 100%;
-		position: absolute;
-		backdrop-filter: blur(5px);
-	}
 
 	.al-card {
 		width: 360px;
-		backdrop-filter: blur(0);
 
 		.al-btn {
 			width: 100%;

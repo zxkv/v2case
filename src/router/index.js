@@ -1,11 +1,8 @@
 import Vue from "vue";
 import VueRouter from "vue-router";
-import NProgress from "nprogress";
 import pinia from "@/store";
 import { useUserStore } from "@/store/user";
 import { routesBase, routesCommon } from "./router";
-
-NProgress.configure({ showSpinner: false });
 
 Vue.use(VueRouter);
 
@@ -19,7 +16,6 @@ const router = new VueRouter({
 
 let isLogin = false;
 router.beforeEach((to, from, next) => {
-	NProgress.start();
 	isLogin = store.role !== null;
 
 	if (to.path === "/login") {
@@ -27,10 +23,6 @@ router.beforeEach((to, from, next) => {
 	} else {
 		isLogin ? next() : next({ name: "Login", path: "/login" });
 	}
-});
-
-router.afterEach(() => {
-	NProgress.done();
 });
 
 export default router;

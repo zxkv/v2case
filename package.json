@@ -18,11 +18,11 @@
 	},
 	"lint-staged": {
 		"*.{js,jsx,tsx,vue}": [
-			"prettier --write",
+			"prettier --write .",
 			"eslint --fix"
 		],
 		"*.{html,css,less,scss,md}": [
-			"prettier --write"
+			"prettier --write ."
 		]
 	},
 	"dependencies": {
@@ -31,7 +31,6 @@
 		"dayjs": "^1.11.10",
 		"element-ui": "^2.15.14",
 		"nanoid": "^5.0.4",
-		"nprogress": "^0.2.0",
 		"pinia": "^2.1.7",
 		"pinia-plugin-persistedstate": "^3.2.1",
 		"qs": "^6.11.2",
