@@ -7,6 +7,8 @@
 			<LayMenu />
 			<el-main class="app-main">
 				<LayMain />
+				<!-- Back Top -->
+				<el-backtop target=".app-main" :right="24" :bottom="8"></el-backtop>
 			</el-main>
 		</el-container>
 	</el-container>

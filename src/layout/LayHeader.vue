@@ -14,7 +14,7 @@
 				</div>
 				<el-dropdown-menu slot="dropdown">
 					<el-dropdown-item icon="el-icon-user" command="/user">个人中心</el-dropdown-item>
-					<el-dropdown-item icon="el-icon-switch-button" command="/login">退出登录</el-dropdown-item>
+					<el-dropdown-item icon="el-icon-switch-button" command="/logout">退出登录</el-dropdown-item>
 				</el-dropdown-menu>
 			</el-dropdown>
 		</div>
@@ -36,19 +36,20 @@ export default {
 	methods: {
 		...mapActions(useUserStore, ["logout"]),
 		handleCommand(cmd) {
-			if (cmd === "/login") {
-				this.$confirm("此操作将退出当前账号，是否退出？", "退出提示", {
-					confirmButtonText: "退出",
-					type: "error"
-				})
-					.then(() => {
-						this.logout();
-						this.$router.replace({ path: "/login" });
-					})
-					.catch(() => {});
-			} else {
-				console.log("1");
+			if (cmd === "/user") {
+				this.$router.push("/user");
+				return;
 			}
+			// 退出登录
+			this.$confirm("此操作将退出当前账号，是否退出？", "退出提示", {
+				confirmButtonText: "退出",
+				type: "error"
+			})
+				.then(() => {
+					this.logout();
+					this.$router.replace({ path: "/login" });
+				})
+				.catch(() => {});
 		}
 	}
 };

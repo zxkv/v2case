@@ -71,7 +71,8 @@ export default {
 			});
 		},
 		handleBack() {
-			location.replace("./");
+			let url = location.origin;
+			location.replace(url);
 		}
 	}
 };

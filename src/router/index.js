@@ -1,6 +1,5 @@
 import VueRouter from "vue-router";
-// import pinia from "@/store";
-import { baseRouters, asyncRouters } from "./router";
+import { baseRouters, asyncRouters, commonRouters } from "./router";
 
 const originPush = VueRouter.prototype.push;
 VueRouter.prototype.push = function push(location) {
@@ -14,13 +13,11 @@ VueRouter.prototype.replace = function replace(location) {
 
 const env = import.meta.env.MODE;
 
-// const store = useUserStore(pinia);
-
 const createRouter = () =>
 	new VueRouter({
 		mode: "history",
 		base: env === "development" ? null : "/v2case/",
-		routes: [...baseRouters, ...asyncRouters],
+		routes: [...baseRouters, ...asyncRouters, ...commonRouters],
 		scrollBehavior: () => ({ x: 0, y: 0 })
 	});
 
