@@ -1,10 +1,10 @@
 <template>
 	<el-container class="app-layout">
-		<LayMenu />
+		<el-header class="app-header" height="48px">
+			<LayHeader />
+		</el-header>
 		<el-container>
-			<el-header class="app-header" height="48px">
-				<LayHeader />
-			</el-header>
+			<LayMenu />
 			<el-main class="app-main">
 				<LayMain />
 			</el-main>

@@ -85,7 +85,7 @@ export default {
 	display: flex;
 	align-items: center;
 	justify-content: center;
-	background: url("../assets/img/login.webp") top center no-repeat;
+	background: url("@/assets/img/login.webp") top center no-repeat;
 	background-size: cover;
 
 	.al-card {

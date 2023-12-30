@@ -4,13 +4,7 @@
 
 <script>
 export default {
-	name: "Dashboard",
-	data() {
-		return {
-			key: ""
-		};
-	},
-	methods: {}
+	name: "Dashboard"
 };
 </script>
 
