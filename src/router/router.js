@@ -4,6 +4,7 @@ export const baseRouters = [
 	{
 		path: "/login",
 		name: "Login",
+		hidden: true,
 		component: () => import("@/views/base/Login.vue")
 	}
 ];
@@ -39,8 +40,8 @@ export const asyncRouters = [
 	{
 		path: "/",
 		component: Layout,
-		// redirect: "",
 		meta: { title: "仪表盘", icon: "el-icon-odometer" },
+		leaf: true,
 		children: [
 			{
 				path: "",
@@ -66,13 +67,13 @@ export const asyncRouters = [
 	{
 		path: "/code",
 		component: Layout,
-		meta: { title: "组件案例", icon: "el-icon-s-opportunity" },
+		meta: { title: "组件封装", icon: "el-icon-s-opportunity" },
 		children: [
 			{
 				path: "",
 				name: "VCode",
 				component: () => import("@/views/code/index.vue"),
-				meta: { title: "案例面板" }
+				meta: { title: "组件面板" }
 			}
 		]
 	}

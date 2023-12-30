@@ -1,10 +1,12 @@
 import { defineStore } from "pinia";
+import { asyncRouters } from "@/router/router";
 
 export const useUserStore = defineStore("user", {
 	state: () => ({
 		username: "",
 		password: "",
-		role: null /* 0：admin、1：user */
+		role: null /* 0：admin、1：user */,
+		menuList: []
 	}),
 	getters: {
 		getRole: state => state.role
@@ -15,11 +17,18 @@ export const useUserStore = defineStore("user", {
 			this.username = username;
 			this.password = password;
 			this.role = username === "admin" ? 0 : 1;
+			// 更新菜单
+			this.setMenu(asyncRouters);
+		},
+		setMenu(list = []) {
+			if (this.menuList.length) this.menuList.splice();
+			this.menuList = [...list];
 		},
 		logout() {
 			this.username = "";
 			this.password = "";
 			this.role = null;
+			this.menuList.splice();
 		}
 	},
 	/**

@@ -1,5 +1,7 @@
 <template>
-	<div>Code</div>
+	<div>
+		<h1 v-for="item in 40" :key="item">{{ item }}</h1>
+	</div>
 </template>
 
 <script>

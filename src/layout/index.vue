@@ -1,14 +1,15 @@
 <template>
 	<el-container class="app-layout">
-		<el-header class="app-header" height="48px">
+		<el-header class="app-header" height="49px">
 			<LayHeader />
 		</el-header>
 		<el-container>
 			<LayMenu />
 			<el-main class="app-main">
-				<LayMain />
+				<LayMain :class="{ mmh: hasFooter }" />
+				<LayFooter v-if="hasFooter" />
 				<!-- Back Top -->
-				<el-backtop target=".app-main" :right="24" :bottom="8"></el-backtop>
+				<el-backtop target=".app-main" :right="24" :bottom="16"></el-backtop>
 			</el-main>
 		</el-container>
 	</el-container>
@@ -18,12 +19,15 @@
 import LayMenu from "./LayMenu.vue";
 import LayHeader from "./LayHeader.vue";
 import LayMain from "./LayMain.vue";
+import LayFooter from "./LayFooter.vue";
 
 export default {
 	name: "Layout",
-	components: { LayMenu, LayHeader, LayMain },
+	components: { LayMenu, LayHeader, LayMain, LayFooter },
 	data() {
-		return {};
+		return {
+			hasFooter: true
+		};
 	},
 	mounted() {},
 	methods: {}
@@ -40,10 +44,17 @@ export default {
 
 	.app-header {
 		padding: 0;
-		box-shadow: 0 0 1px 0 #777;
+		border-bottom: 1px solid #e6e6e6;
 	}
 	.app-main {
-		padding: 0;
+		padding: 10px;
+		height: calc(100vh - 50px);
+		background-color: #fafafa;
+		overflow: hidden;
+		overflow-y: overlay;
+		.mmh {
+			min-height: calc(100% - 32px);
+		}
 	}
 }
 </style>
