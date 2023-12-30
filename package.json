@@ -26,7 +26,7 @@
 		]
 	},
 	"dependencies": {
-		"axios": "^1.6.2",
+		"axios": "^1.6.3",
 		"better-mock": "^0.3.7",
 		"dayjs": "^1.11.10",
 		"element-ui": "^2.15.14",
@@ -34,7 +34,7 @@
 		"pinia": "^2.1.7",
 		"pinia-plugin-persistedstate": "^3.2.1",
 		"qs": "^6.11.2",
-		"vue": "~2.7.15",
+		"vue": "^2.7.16",
 		"vue-router": "~3.6.5"
 	},
 	"devDependencies": {
@@ -46,8 +46,8 @@
 		"husky": "^8.0.3",
 		"lint-staged": "^15.2.0",
 		"prettier": "^3.1.1",
-		"sass": "^1.69.5",
-		"vite": "^5.0.8",
+		"sass": "~1.32.13",
+		"vite": "^5.0.10",
 		"vite-plugin-env-html": "^0.1.2"
 	}
 }

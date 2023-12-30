@@ -3,7 +3,7 @@
 		<el-card shadow="hover" class="al-card">
 			<div slot="header">
 				<span>系统登录</span>
-				<span class="al-back" @click="handleBack">返回</span>
+				<el-button class="al-back" type="text" size="medium" @click="handleBack">返回</el-button>
 			</div>
 			<el-form ref="loginForm" :model="loginForm" :rules="rules" @submit.native.prevent="handleLogin">
 				<el-form-item prop="username">
@@ -93,9 +93,7 @@ export default {
 
 		.al-back {
 			float: right;
-			font-size: 14px;
-			color: #409eff;
-			cursor: pointer;
+			padding: 3px 0;
 		}
 		.al-btn {
 			width: 100%;

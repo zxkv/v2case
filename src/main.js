@@ -4,13 +4,15 @@ import router from "./router";
 import ElementUI from "element-ui";
 import App from "./App.vue";
 import "./assets/css/app.css";
-import "element-ui/lib/theme-chalk/index.css";
+import "./assets/css/element-variables.scss";
 
 import "./store";
 import "./permission";
 
 Vue.use(VueRouter);
 Vue.use(ElementUI, { size: "small", zIndex: 3000 });
+
+Vue.config.productionTip = false;
 
 new Vue({
 	router,

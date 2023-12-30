@@ -24,7 +24,15 @@ export default defineConfig(mode => {
 		},
 		resolve: {
 			alias: {
-				"@": resolve(__dirname, "src")
+				"@": resolve(__dirname, "./src"),
+				"~": resolve(__dirname, "./node_modules")
+			}
+		},
+		css: {
+			preprocessorOptions: {
+				sass: {
+					// additionalData: `@import './src/assets/css/app.scss';`
+				}
 			}
 		}
 	};
