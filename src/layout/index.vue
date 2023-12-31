@@ -1,10 +1,10 @@
 <template>
 	<el-container class="app-layout">
-		<el-header class="app-header" height="49px">
-			<LayHeader />
-		</el-header>
+		<LayMenu />
 		<el-container>
-			<LayMenu />
+			<el-header class="app-header" height="49px">
+				<LayHeader />
+			</el-header>
 			<el-main class="app-main">
 				<LayMain :class="{ mmh: hasFooter }" />
 				<LayFooter v-if="hasFooter" />
@@ -49,7 +49,7 @@ export default {
 	.app-main {
 		padding: 10px;
 		height: calc(100vh - 50px);
-		background-color: #fafafa;
+		background-color: #f5f5f5;
 		overflow: hidden;
 		overflow-y: overlay;
 		.mmh {

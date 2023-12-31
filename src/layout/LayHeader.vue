@@ -1,11 +1,6 @@
 <template>
 	<div class="lay-header">
-		<div class="lh-left">
-			<div class="logo">
-				<img src="@/assets/img/logo.png" draggable="false" />
-			</div>
-			<div class="logo-title">Vue2 Case Admin</div>
-		</div>
+		<div class="lh-left"></div>
 		<div class="lh-right">
 			<el-dropdown class="lr-user" @command="handleCommand">
 				<div class="lr-user-wrap">
@@ -65,20 +60,6 @@ export default {
 
 	.lh-left {
 		padding-left: 10px;
-		display: flex;
-		align-items: center;
-		.logo {
-			padding-right: 10px;
-			vertical-align: middle;
-			img {
-				height: 40px;
-				min-width: 40px;
-			}
-		}
-
-		.logo-title {
-			font-size: 24px;
-		}
 	}
 
 	.lh-right {
