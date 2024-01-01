@@ -49,3 +49,51 @@ export const turnFileSize = (size = 0) => {
 	else if (size > 1024) return (size / 1024).toFixed(3) + "KB";
 	else return size + "B";
 };
+
+/**
+ * @description GET 参数处理
+ * @param {Object} params  参数集合
+ */
+export const tansParams = params => {
+	let result = "";
+	for (const propName of Object.keys(params)) {
+		const value = params[propName];
+		let part = encodeURIComponent(propName) + "=";
+		if (value !== null && value !== "" && typeof value !== "undefined") {
+			if (typeof value === "object") {
+				for (const key of Object.keys(value)) {
+					if (value[key] !== null && value[key] !== "" && typeof value[key] !== "undefined") {
+						let params = propName + "[" + key + "]";
+						let subPart = encodeURIComponent(params) + "=";
+						result += subPart + encodeURIComponent(value[key]) + "&";
+					}
+				}
+			} else {
+				result += part + encodeURIComponent(value) + "&";
+			}
+		}
+	}
+	return result;
+};
+
+/**
+ * @description 动态更新网站标题
+ * @param {Object} msg
+ * @param {Boolean} isLogin 登录/退出
+ **/
+export const updateWebInfo = (msg, isLogin = true) => {
+	// 网站标题
+	const webTitle = process.env.VUE_APP_TITLE || "v2case";
+	// 网站站标
+	const webIcon = location.origin + "/favicon.ico";
+	// 站标标签
+	const iconTag = document.querySelector("link[rel*='icon']");
+	if (isLogin) {
+		let { title, icon } = msg;
+		document.title = title ? title : webTitle;
+		iconTag.href = icon ? icon : webIcon;
+	} else {
+		document.title = webTitle;
+		iconTag.href = webIcon;
+	}
+};

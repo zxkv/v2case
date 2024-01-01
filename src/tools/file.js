@@ -1,4 +1,5 @@
 import MP4Box from "mp4box";
+import SparkMD5 from "spark-md5";
 
 /**
  * @description 获取音/视频时长
@@ -53,7 +54,6 @@ export const getImgWH = file => {
  * @param {Object} file 文件对象
  * @return {Boolean} true 不符合 false 符合
  **/
-
 export const checkMediaFile = file => {
 	return new Promise(resolve => {
 		// 音视频文件检测
@@ -95,15 +95,52 @@ export const checkMediaFile = file => {
 			// 创建音频实例
 			const audioElement = new Audio(fileURL);
 			// 音频加载播放
-			audioElement.addEventListener("canplaythrough", evt => {
-				console.log("音频加载播放", evt);
-				resolve(false);
-			});
+			audioElement.addEventListener("canplaythrough", () => resolve(false));
 			// 音频加载失败
-			audioElement.addEventListener("error", err => {
-				console.log("音频加载失败", err);
-				resolve(true);
-			});
+			audioElement.addEventListener("error", () => resolve(true));
 		}
+	});
+};
+
+/**
+ * @description 获取文件MD5
+ * @param {Object} file 文件对象
+ * @return {String} 文件md5
+ */
+export const getFileMD5 = file => {
+	return new Promise((resolve, reject) => {
+		let blobSlice = File.prototype.slice || File.prototype.mozSlice || File.prototype.webkitSlice;
+		// 分片大小 2M
+		const chunkSize = 2 * 1024 * 1024;
+		// 分片数量
+		let chunks = Math.ceil(file.size / chunkSize); // 片数
+		let currentChunk = 0;
+		// 转换文件流
+		let spark = new SparkMD5.ArrayBuffer();
+		// 创建文件实例
+		const fileReader = new FileReader();
+		// 文件加载
+		function loadNext() {
+			let start = currentChunk * chunkSize;
+			let end = start + chunkSize > file.size ? file.size : start + chunkSize;
+			fileReader.readAsArrayBuffer(blobSlice.call(file, start, end));
+		}
+		// 文件加载完成
+		fileReader.onload = e => {
+			spark.append(e.target.result);
+			currentChunk++;
+			// 判断文件分片
+			if (currentChunk < chunks) {
+				loadNext();
+			} else {
+				let md5 = spark.end();
+				spark.destroy();
+				resolve(md5);
+			}
+		};
+		// 文件加载失败
+		fileReader.onerror = e => reject(e);
+		// 加载文件
+		loadNext();
 	});
 };
