@@ -19,7 +19,7 @@ const logOut = () => {
 };
 
 const instance = axios.create({
-	baseURL: process.env.VITE_APP_API,
+	baseURL: import.meta.env.VITE_APP_API,
 	timeout: 300000
 });
 

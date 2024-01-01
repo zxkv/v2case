@@ -83,7 +83,7 @@ export const tansParams = params => {
  **/
 export const updateWebInfo = (msg, isLogin = true) => {
 	// 网站标题
-	const webTitle = process.env.VUE_APP_TITLE || "v2case";
+	const webTitle = import.meta.env.VITE_APP_TITLE || "v2case";
 	// 网站站标
 	const webIcon = location.origin + "/favicon.ico";
 	// 站标标签

@@ -7,7 +7,7 @@ import ChildView from "@/layout/LayMain.vue";
  * @return {Function} 组件地址
  *  */
 const asyncLoadView = view => {
-	if (process.env.NODE_ENV === "development") {
+	if (import.meta.env.NODE_ENV === "development") {
 		return resolve => require([`@/views/${view}.vue`], resolve);
 	} else {
 		return () => import(`@/views/${view}.vue`);
