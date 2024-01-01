@@ -2,7 +2,7 @@
 
 Vue2 开发案例
 
-### Project composition
+### 项目架构
 
 vite5 + vue2 + vue-router3 + pinia + elementUI
 
@@ -31,3 +31,13 @@ yarn build
 -   [Vue Router](https://v3.router.vuejs.org/zh)
 -   [Pinia](https://pinia.vuejs.org/zh)
 -   [Element-ui](https://element.eleme.cn/#/zh-CN)
+
+### 我的博客
+
+[![前端播客](./src/assets/img/web.webp)](https://zxkv.github.io)
+
+### 联系方式
+
+📮：<zxkang@88.com>
+
+<img src="./src/assets/img/qq.webp" width='200'/>
